@@ -1,0 +1,753 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chrome Dev Rel</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+   <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <img src="images/google_developers_logo.png" />
+      <p style="margin: 40px 0 0 0">Press P to view presenter notes</p>
+    </article>
+  <aside class="note">
+<p></p>
+    <p>This is a presentation I gave for the GDG Leads meeting in London on 11 October 2013.</p>
+    <p>Suggestions and corrections welcome!</p>
+  </aside>
+  </slide>
+
+
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <hgroup class="auto-fadein">
+    <h1 data-config-title></h1>
+    <h2 data-config-subtitle></h2>
+    <p data-config-presenter></p>
+    <p><a href="http://www.samdutton.com/chromedevrel" title="Presentation slides on samdutton.com">samdutton.com/chromedevrel</a></p>
+    <p>@sw12</p>
+  </hgroup>
+  <aside class="note">
+    <p>My first contact with Google was actually many years ago trying to build an offline ITN News app with Google Gears for PocketPC.</p>
+  </aside>
+</slide>
+
+<!-- content begins -->
+
+<slide class="nobackground">
+  <article class="fill vcenter flexbox">
+    <div style="font-size: 200%"><a href="samdutton.com/chromedevrel" title="These slides online">samdutton.com/chromedevrel</a></div>
+  </article>
+  <aside class="note">
+    <p>These are all platforms for web apps.</p>
+  </aside>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Today</h2>
+  </hgroup>
+  <article>
+    <ul class="tight">
+      <li>9.30 Chrome (Sam Dutton)</li>
+      <li>10.30 Knowledge (Dan Brickley)</li>
+      <li>11.00 Coffee</li>
+      <li>11.30 Google+ (Ian Barber)</li>
+      <li>12.30 Lunch at Market Square (Google)</li>
+      <li>1.30 Cloud (Mandy Waite)</li>
+      <li>2.30 Unconference/Shannon chats to GDE candidates</li>
+      <li>5.15 closing words (Van Riper/Rupert Whitehead)</li>
+    </ul>
+  </article>
+    <aside class="note">
+   </aside>
+</slide>
+
+
+
+
+
+
+
+
+<slide>
+  <hgroup>
+    <h2>What are our priorities?</h2>
+  </hgroup>
+  <article>
+    <ul>
+      <li>Mobile</li>
+      <li>Performance</li>
+      <li>Dart</li>
+      <li>Chrome Apps</li>
+      <li>Polymer and Web Components</li>
+      <li>Media</li>
+    </ul>
+  </article>
+    <aside class="note">
+      <p>Can't take laptops to Google L-team meetings.</p>
+      <p>I heard one senior Googler describe the web like this: 'It's like your baby grew up and now they're a teenager and you feel like you don't understand them, but you have to.</p>
+   </aside>
+</slide>
+
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div class="reallyBig">What is the mobile web?</div>
+    </article>
+</slide>
+
+<slide class="nobackground">
+    <img alt="Samsung Chromebook series 5" src="images/chromebook.jpg" style="position: relative; top: 100px; left: 157px;">
+  <aside class="note">
+    <p>A Chromebook with a SIM card?</p>
+  </aside>
+</slide>
+
+<slide class="nobackground">
+    <img alt="Hand holding Kindle DX graphite" src="images/kindle.png" style="position: relative; left: -61px; top: 85px;">
+  <aside class="note">
+    <p>A Kindle?</p>
+  </aside>
+</slide>
+
+<slide style="background-image: url(images/sonyVaioTap20.jpg)">
+  <aside class="note">
+    <p>A 20-inch touch screen?</p>
+  </aside>
+</slide>
+
+<slide style="background-image: url(images/googleSelfDrivingCar.jpg)">
+  <aside class="note">
+    <p>My new car? I wish</p>
+  </aside>
+</slide>
+
+
+<slide style="background-image: url(images/glass.jpg)">
+  <aside class="note">
+    <p>My new glasses?</p>
+  </aside>
+</slide>
+
+<slide style="background-image: url(images/brinMeme.jpg)">
+  <aside class="note">
+    <p>These are all platforms for web apps.</p>
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <article class="fill vcenter flexbox">
+    <div class="quiteBig">All these devices have a browser.</div>
+  </article>
+  <aside class="note">
+    <p>These are all platforms for web apps.</p>
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <article class="fill vcenter flexbox">
+    <div class="quiteBig">7,000 different types of mobile device access Facebook every day.</div>
+  </article>
+ <footer class="source">Source: <a href="http://techcrunch.com/2012/08/03/vp-mike-schroepfer-7000-different-mobile-devices-access-facebook-every-day/">TechCrunch</a>, 3 August 2012</footer>
+  <aside class="note">
+    <p>This means 7,000 different products.</p>
+    <p>This is from Facebook VP of Engineering, Mike Scroepfer</p>
+    <p>The commoditisation of computing: more mobile phones in the world than pencils or toothbrushes.</p>
+    <p>Recently heard an ex-Nokia analyst </p>
+    <p>'Enterprise sales are just noise,' he said.</p>
+  </aside>
+</slide>
+
+<slide class="fill nobackground" style="background-image: url(images/evolution.png)">
+  <aside class="note">
+    <p>I was looking back at presentations last year</p>
+    <p>...and I'm struck by how much the mobile web has changed in that time.</p>
+    <p>It just seems like the norm now for mobile web developers like you to use APIs and frameworks</p>
+    <p>...that really push the limits of what you can do in the mobile browser.</p>
+    <p>And the availability of media APIs and better connectivity is pushing the limits as well.</p>
+    <p>The $159 Kindle Fire, with an annual data plan *$50*</p>
+ </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div class="quiteBig">We can't predict the platform, but...</div>
+    </article>
+    <aside class="note">
+      <p>...and the limits of mobile web will only get more blurred and complex</p>
+    </aside>
+</slide>
+
+<slide class="fill nobackground" style="background-image: url(images/mobileVDesktop.png)">
+  <aside class="note">
+    <p>What we do know is that mobile web use is outstripping desktop worldwide.</p>
+    <p>In a number of countries mobile has already overtaken desktop.</p>
+ </aside>
+ <footer class="source">Source: <a href="http://www.morganstanley.com/institutional/techresearch/pdfs/Internet_Trends_041210.pdf">Morgan Stanley Research</a></footer>
+</slide>
+
+<slide class="fill nobackground">
+  <hgroup>
+    <h2>Fastest growing iOS and Android markets</h2>
+  </hgroup>
+  <article class="flexbox vcenter">
+    <img alt="Fastest growing iOS and Android markets" src="images/mobileMarkets.png" />
+    <footer class="source">Source: <a href="http://blog.flurry.com/bid/88867/iOS-and-Android-Adoption-Explodes-Internationally">Flurry</a>, 27 August 2012</footer>
+  </article>
+  <aside class="note">
+    <p>Massive increase in PhoneGap usage in BRIC countries – Joe McCann at recent PhoneGap day.</p>
+    <p>Emerging markets where computer equals smartphone.</p>
+    <p>MIST is next.</p>
+ </aside>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Closer to home: UK publishing</h2>
+  </hgroup>
+  <article>
+    <ul>
+      <li><a href="http://www.ft.com" title="Financial Times website">ft.com</a>: 52% traffic increase on phones, 49% on tablets &mdash; in six months</li>
+      <li><a href="http://www.dailymail.co.uk" title="Daily Mail website">Mail Online</a>: 33% traffic from the mobile web</li>
+      <li><a href="http://www.guardian.co.uk" title="Guardian website">Guardian</a>: 6.4 million of 8.95 million online</li>
+    </ul>
+  </article>
+  <footer class="source">Source: <a href="http://www.guardian.co.uk/media/2012/sep/12/guardian-9-million-readers-nrs">Guardian</a>, 12 September 2012</footer>
+  <aside class="note">
+    <p>These figures speak for themselves.</p>
+    <p>The Mail Online is now the most popular news site in the world.</p>
+ </aside>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Mobile web must perform better than desktop</h2>
+  </hgroup>
+  <article class="flexbox vleft auto-fadein">
+    <q style='color: black;'>In 2011, 71% of users expected performance<br />as good as or better than desktop <br />&mdash; up from 58% in 2009</q>
+    <div class="author"><a href="http://www.google.com/url?q=http%3A%2F%2Fwww.gomez.com%2Fresources%2Fwhitepapers%2Fsurvey-report-what-users-want-from-mobile%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE2t1mkY94DyQaBVuraOxLl495Jsg" title="Gomez survey report">Gomez</a></div>
+  </article>
+  <aside class="note">
+    <p>In other words, performance expectations are higher on mobile than desktop, and increasing.</p>
+ </aside>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Mobile devices have more!</h2>
+  </hgroup>
+  <article>
+    <ul class="tight">
+      <li>Telephone</li>
+      <li>Camera</li>
+      <li>GPS</li>
+      <li>Accelerometer</li>
+      <li>Gyroscope</li>
+      <li>Proximity detector</li>
+      <li>Ambient light sensor</li>
+      <li>Multi-touch, gestures and keyboards</li>
+      <li>...</li>
+    </ul>
+  </article>
+  <aside class="note">
+    <p>Mobile devices are more complex than desktop machines.</p>
+    <p>So mobile web app performance optimisation can be *morecomplex and demanding than for desktop.</p>
+ </aside>
+</slide>
+
+<slide class="nobackground">
+  <article class="flexbox vcenter">
+      <div class="reallyBig">plus ça change</div>
+    </article>
+    <aside class="note">
+      <p>The good news is...</p>
+      <p>The same old rules apply.</p>
+    </aside>
+</slide>
+
+<slide class="segue dark nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h2>Performance</h2>
+  </hgroup>
+</slide>
+
+<slide class="nobackground">
+  <article  class="fill flexbox vcenter">
+    <a class="big" href="https://developers.google.com/speed/pagespeed/insights/" title="Page Speed Insights">Page Speed Insights</a>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>APIs</h2>
+  </hgroup>
+  <article>
+    <ul>
+      <li><a href="http://localhost/simpl/navigationtiming/" title="Navigation Timing API demo">Navigation Timing</a></li>
+      <li><a href="http://simpl.info/resourcetiming" title="Resource Timing API demo">Resource Timing</a></li>
+      <li>Google Analytics: Behavior > Site Speed</li>
+    </ul>
+  </article>
+  <aside class="note">
+  <p>Want to know more? Check out the <li><a href="http://www.html5rocks.com/en/tutorials/webperformance/basics/" title="HTML5 Rocks article about Navigation Timing">HTML5 Rocks article</a></li>
+</p>
+  </aside>
+</slide>
+
+
+
+
+
+
+<slide class="segue dark nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h2>Tools</h2>
+  </hgroup>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Chrome Dev Tools</h2>
+  </hgroup>
+  <article>
+    <ul>
+      <li>chrome://inspect</li>
+      <li>Screencasting</li>
+      <li>Workspaces</li>
+    </ul>
+  </article>
+  <aside class="note">
+    <p>You can access devices simply by going to chrome://inspect. No more ADB!</p>
+    <p>Enter URL</p>
+    <p>Experimental settings for screencast - then click icon.</p>
+    <p>Two way control.</p>
+  </aside>
+</slide>
+
+
+<slide class="segue dark nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h2>Dart</h2>
+  </hgroup>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Language, tools, libraries for structured web apps</h2>
+  </hgroup>
+  <article >
+    <ul>
+  <li>Dart compiles to JavaScript, runs across the modern web</li>
+  <li>Language and core libraries are stable</li>
+  <li>Polymer and Angular being ported to Dart</li>
+  <li>Growing ecosystem: >400 packages</li>
+    </ul>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div class="big"><a href="http://www.google.com/elections/ed/de/districts" title="German election map">German election map</a></div>
+    </article>
+  <aside class="note">
+    <p></p>
+  </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div class="big"><a href="http://dartlang.org" title="Dart home">dartlang.org</a></div>
+    </article>
+  <aside class="note">
+    <p></p>
+  </aside>
+</slide>
+
+
+
+<slide class="segue dark nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h2>Web Components and Polymer</h2>
+  </hgroup>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Old 'n' busted</h2>
+  </hgroup>
+  <article class="fill flexbox vcenter">
+   <img src="images/oldNBusted.png" alt="Screenshot of HTML code showing deep DOM heirarchy" />
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>New hotness</h2>
+  </hgroup>
+  <article class="fill flexbox vcenter">
+<pre class="prettyprint" data-lang="html">
+&lt;messages&gt;
+  &lt;message&gt;
+    &lt;subject&gt;
+      Please fill out the TPS report
+    &lt;/subject&gt;
+    &lt;sent&gt;2012-10-03&lt;/sent&gt;
+    &lt;summary&gt;
+      I'm going to have to ask you to come in...
+    &lt;/summary&gt;
+  &lt;/message&gt;
+  ...
+&lt;/messages&gt;
+</pre>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Encapsulation</h2>
+  </hgroup>
+  <article class="fill flexbox vcenter">
+   <img src="images/encapsulation.png" alt="Diagram showing encapsulation with Web Components" />
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Reusability</h2>
+  </hgroup>
+  <article class="fill flexbox vcenter">
+   <img src="images/reusability.png" alt="Diagram showing reusability with Web Components" />
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Data binding</h2>
+  </hgroup>
+  <article class="fill flexbox vcenter">
+   <img src="images/dataBinding.png" alt="Diagram showing data binding with Web Components" />
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Templates!</h2>
+  </hgroup>
+  <article class="fill flexbox vcenter">
+    <div><a href="http://html5-demos.appspot.com/static/webcomponents/index.html#6" title="Eric Bidelman Web Components presentation">html5-demos.appspot.com/static/webcomponents</a></div>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Polymer</h2>
+  </hgroup>
+  <article>
+      <ul>
+        <li>JavaScript library providing polyfills for Web Components
+        <br />&mdash; and more</li>
+        <li><a href="http://www.polymer-project.org/" title="The Polymer project">polymer-project.org</a></li>
+      </ul>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="segue dark nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h2>Chrome Apps</h2>
+  </hgroup>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+  <h2>Chrome apps v2</h2>
+  </hgroup>
+  <article>
+  <ul>
+    <li>Native UX, out-of-browser</li>
+    <li><a href="https://chrome.google.com/webstore/category/collection/for_your_desktop" title="Chrome Web Store: For Your Desktop">For Your Desktop</a></li>
+    <li>Access to platform: files, USB, Bluetooth, Alarms</li>
+    <li>Built-in support for Cloud: Identity, Sync, Cloud Push Messaging</li>
+    <li>Auto-updates from CWS</li>
+  </ul>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+
+
+<slide class="nobackground">
+  <hgroup>
+  <h2>and something extra...</h2>
+  </hgroup>
+  <article>
+  <ul>
+    <li>Add to homescreen: <a href="http://forecast.io" title="Site with add to homescreen">forecast.io</a></li>
+    <li><code>mobile-web-app-capable</code></li>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+
+
+<slide class="segue dark nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h2>Media</h2>
+  </hgroup>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div><a href="http://idevelop.github.com/ascii-camera/" title="getUserMedia video rendered as ASCII art">idevelop.github.com/ascii-camera</a></div>
+    </article>
+    <aside class="note">
+    </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div><a href="http://www.soundstep.com/blog/experiments/jsdetection/" title="getUserMedia xylophone">soundstep.com/blog/experiments/jsdetection</a></div>
+    </article>
+    <aside class="note">
+    </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div><a href="http://www.shinydemos.com/facekat/" title="getUserMedia used to control a game">FaceKat</a></div>
+    </article>
+    <aside class="note">
+    </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div><a href="http://webcamtoy.com/app" title="getUserMedia photobooth, with effects">webcamtoy.com</a></div>
+    </article>
+    <aside class="note">
+    </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>WebRTC</h2>
+  </hgroup>
+  <article>
+      <ul>
+        <li><a href="http://bit.ly/webrtcwebaudio" title="WebRTC resources">WebRTC resources</a></li>
+        <li><a href="http://bitbucket.org/webrtc/codelab" title="WebRTC codelab">WebRTC codelab</a></li>
+      </ul>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>WebRTC across platforms</h2>
+  </hgroup>
+  <article style="height: 100%; position: relative">
+    <ul class="tight" xstyle='margin: 0 1em 0 0'>
+      <li>Chrome</li>
+      <li>Chrome for Android</li>
+      <li>Firefox</li>
+      <li>Opera</li>
+      <li>Native <a href="https://code.google.com/p/libjingle/source/browse/trunk/talk/app/webrtc/java/src/org/webrtc/PeerConnection.java">Java</a> and Objective-C bindings</li>
+    </ul>
+    <img src="images/android.jpg" alt="Firefox/Chrome interoperability" style="position: absolute; right: 2em; top: -82px; width: 320px" />
+    <img src="images/firefoxChrome.jpg" alt="Firefox/Chrome interoperability" style="position: absolute; bottom: 5em; width: 45%;" />
+  </article>
+  <aside><p>
+    </p>
+  </aside>
+</slide>
+
+
+<slide class="nobackground">
+  <article class="fill flexbox vcenter">
+       <div class="big"><b>1,000,000,000+</b></div>
+       <div>WebRTC endpoints</div>
+  </article>
+  <aside class="note">
+  <p>Over one billion WebRTC-enabled users, which gives some idea of the size of this opportunity. In order to grow the ecosystem further, we're also providing official, supported native versions of WebRTC for Android, and very soon iOS.</p>
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <article class="fill flexbox vcenter">
+  <a class="big" href="talky.io/gdg" title="talky.io WebRTC video chat app">talky.io/gdg</a>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>VP8, VP9</h2>
+  </hgroup>
+  <article>
+      <ul>
+        <li><a href="http://youtu.be/hGrGwZycV-8" title="VP9 demo">Demo</a></li>
+        <li><a href="http://youtu.be/K6JshvblIcM" title="Google I/O 2013 - WebM and the New VP9 Open Video Codec">Google I/O presentation: WebM and VP9</a></li>
+      </ul>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div><a href="http://simpl.info/videoalpha" title="WebM Alpha transparency">simpl.info/videoalpha</a></div>
+    </article>
+    <aside class="note">
+    </aside>
+</slide>
+
+<slide class="nobackground">
+    <article class="fill flexbox vcenter">
+      <div><a href="http://samdutton.net/mapTrack" title="Synchronised metadata with the track element">samdutton.net/mapTrack</a></div>
+    </article>
+    <aside class="note">
+    </aside>
+</slide>
+
+
+
+
+<slide class="segue dark nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <hgroup class="auto-fadein">
+    <h2>...and finally</h2>
+  </hgroup>
+</slide>
+
+<slide class="nobackground">
+  <hgroup>
+    <h2>Web Lab open sourced!</h2>
+  </hgroup>
+  <article class="fill flexbox vcenter">
+   <div style="margin: 0 0 2em 0"><a href="https://github.com/GoogleChrome/ChromeWebLab" title="Github Web Lab code repo">github.com/GoogleChrome/ChromeWebLab</a></div>
+   <iframe width="730" style="width: 730px;" src="http://www.youtube.com/embed/MxbYEo85gAY"></iframe>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <article class="fill flexbox vcenter">
+  <a href="https://github.com/html5rocks/www.html5rocks.com/wiki/Contributors-Guide" title="Chrome Dev Summit">HTML5 Rocks: how to contribute</a>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="nobackground">
+  <article class="fill flexbox vcenter">
+  <a href="http://chromestatus.com" title="chromestatus.com">chromestatus.com</a>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+
+<slide class="nobackground">
+  <article class="fill flexbox vcenter">
+  <a href="http://developer.chrome.com/devsummit" title="Chrome Dev Summit"><img src="images/chromeDevSummit.png" alt="Chrome Dev Summit" /></a>
+  </article>
+  <aside class="note">
+  </aside>
+</slide>
+
+
+<slide class="nobackground">
+  <article class="fill vcenter flexbox">
+    <div style="font-size: 200%"><a href="samdutton.com/chromedevrel" title="These slides online">samdutton.com/chromedevrel</a></div>
+  </article>
+  <aside class="note">
+    <p>These are all platforms for web apps.</p>
+  </aside>
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Thank You!&gt;</h2>
+    <p>Any questions?</p>
+    <p></p>
+    <p><a href="http://www.samdutton.com/chromedevrel" style="color:white; border-bottom: none">samdutton.com/chromedevrel</a><br /><br />
+    @sw12
+    </p>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+  <aside class="note">
+  </aside>
+</slide>
+
+<slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
